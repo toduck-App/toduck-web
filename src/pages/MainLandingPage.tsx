@@ -5,7 +5,6 @@ import { QrCode, HelpCircle, X, ArrowLeft } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { colors } from "../styles/colors";
 import { typography } from "../styles/typography";
-import { TDButton } from "../components/common/TDButton";
 import { useAuthStore } from "../store/authStore";
 
 // Import assets
@@ -260,7 +259,7 @@ export const MainLandingPage: React.FC = () => {
           <div
             style={{
               width: "100%",
-              maxWidth: 320,
+              maxWidth: 360,
               padding: "0 24px",
               paddingBottom: LAYOUT.bottomOffset,
               boxSizing: "border-box",
@@ -270,6 +269,38 @@ export const MainLandingPage: React.FC = () => {
               gap: 16,
             }}
           >
+            <button
+              onClick={handleLoginClick}
+              style={{
+                width: "100%",
+                height: 52,
+                background: `linear-gradient(135deg, ${colors.primary[500]} 0%, ${colors.primary[400]} 100%)`,
+                color: colors.baseWhite,
+                border: "none",
+                borderRadius: 14,
+                fontSize: typography.boldHeader5.fontSize,
+                fontWeight: typography.boldHeader5.fontWeight,
+                letterSpacing: typography.boldHeader5.letterSpacing,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8,
+                boxShadow: `0 4px 16px rgba(255, 114, 0, 0.35)`,
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = "0 6px 24px rgba(255, 114, 0, 0.45)";
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "0 4px 16px rgba(255, 114, 0, 0.35)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <QrCode size={20} />
+              QR코드로 로그인
+            </button>
             <div
               style={{
                 display: "flex",
@@ -278,6 +309,16 @@ export const MainLandingPage: React.FC = () => {
                 gap: 6,
               }}
             >
+              <p
+                style={{
+                  fontSize: typography.mediumBody3.fontSize,
+                  fontWeight: typography.mediumBody3.fontWeight,
+                  color: colors.neutral[600],
+                  textAlign: "center",
+                }}
+              >
+                토덕 앱으로 로그인할 수 있어요
+              </p>
               <button
                 style={{
                   background: "none",
@@ -291,27 +332,9 @@ export const MainLandingPage: React.FC = () => {
                 onClick={toggleTooltip}
                 aria-label="로그인 안내"
               >
-                <HelpCircle size={14} color={colors.neutral[700]} />
+                <HelpCircle size={13} color={colors.neutral[500]} />
               </button>
-              <p
-                style={{
-                  fontSize: typography.mediumBody2.fontSize,
-                  fontWeight: typography.mediumBody2.fontWeight,
-                  color: colors.neutral[700],
-                  textAlign: "center",
-                }}
-              >
-                토덕 앱으로 로그인할 수 있어요!
-              </p>
             </div>
-            <TDButton
-              title="QR코드로 로그인"
-              onClick={handleLoginClick}
-              variant="primary"
-              size="large"
-              fullWidth={true}
-              icon={<QrCode size={20} color={colors.baseWhite} />}
-            />
           </div>
         </div>
       </div>
