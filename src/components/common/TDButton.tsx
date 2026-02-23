@@ -11,6 +11,7 @@ interface TDButtonProps {
   size?: 'medium' | 'large';
   fullWidth?: boolean;
   style?: React.CSSProperties;
+  icon?: React.ReactNode;
 }
 
 export const TDButton: React.FC<TDButtonProps> = ({
@@ -21,10 +22,12 @@ export const TDButton: React.FC<TDButtonProps> = ({
   size = 'large',
   fullWidth = true,
   style,
+  icon,
 }) => {
   const getBackgroundColor = () => {
     if (disabled) {
-      return variant === 'outline' ? colors.baseWhite : colors.neutral[300];
+      // iOS: TDColor.Neutral.neutral100
+      return colors.neutral[100];
     }
     switch (variant) {
       case 'primary':
@@ -40,7 +43,8 @@ export const TDButton: React.FC<TDButtonProps> = ({
 
   const getTextColor = () => {
     if (disabled) {
-      return variant === 'outline' ? colors.neutral[500] : colors.baseWhite;
+      // iOS: TDColor.Neutral.neutral500
+      return colors.neutral[500];
     }
     switch (variant) {
       case 'primary':
@@ -85,6 +89,7 @@ export const TDButton: React.FC<TDButtonProps> = ({
       disabled={disabled}
       style={buttonStyle}
     >
+      {icon && <span style={{ display: 'flex', marginRight: 8 }}>{icon}</span>}
       {title}
     </button>
   );

@@ -1,10 +1,7 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 
-// API Base URL - localhost:8080 for local, https://api-toduck.seol.pro for production
-const API_BASE_URL = import.meta.env.DEV
-  ? 'http://localhost:8080/v1'
-  : 'https://api-toduck.seol.pro/v1';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/v1';
 
 // Create axios instance
 export const apiClient = axios.create({

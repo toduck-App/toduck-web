@@ -26,24 +26,36 @@ import angryMood from '../../assets/images/mood/angry_Mood.png';
 import anxiousMood from '../../assets/images/mood/anxious_Mood.png';
 import tiredMood from '../../assets/images/mood/tired_Mood.png';
 
+// Import large mood images (for DiaryEmotionStep)
+import largeHappy from '../../assets/images/mood/largeHappy.png';
+import largeGood from '../../assets/images/mood/largeGood.png';
+import largeLove from '../../assets/images/mood/largeLove.png';
+import largeSoso from '../../assets/images/mood/largeSoso.png';
+import largeSick from '../../assets/images/mood/largeSick.png';
+import largeSad from '../../assets/images/mood/largeSad.png';
+import largeAngry from '../../assets/images/mood/largeAngry.png';
+import largeAnxious from '../../assets/images/mood/largeAnxious.png';
+import largeTired from '../../assets/images/mood/largeTired.png';
+
 interface EmotionItem {
   emotion: Emotion;
   label: string;
   color: string;
   lottie: object;
   image: string;
+  largeImage: string;
 }
 
 const emotions: EmotionItem[] = [
-  { emotion: 'happy', label: '행복해요', color: colors.diary.happy, lottie: happyAnimation, image: happyMood },
-  { emotion: 'good', label: '좋아요', color: colors.diary.good, lottie: goodAnimation, image: goodMood },
-  { emotion: 'love', label: '설레요', color: colors.diary.love, lottie: loveAnimation, image: loveMood },
-  { emotion: 'soso', label: '그냥 그래요', color: colors.diary.soso, lottie: sosoAnimation, image: sosoMood },
-  { emotion: 'sick', label: '아파요', color: colors.diary.sick, lottie: sickAnimation, image: sickMood },
-  { emotion: 'sad', label: '슬퍼요', color: colors.diary.sad, lottie: sadAnimation, image: sadMood },
-  { emotion: 'angry', label: '화나요', color: colors.diary.angry, lottie: angryAnimation, image: angryMood },
-  { emotion: 'anxious', label: '불안해요', color: colors.diary.anxiety, lottie: anxietyAnimation, image: anxiousMood },
-  { emotion: 'tired', label: '피곤해요', color: colors.diary.tired, lottie: tiredAnimation, image: tiredMood },
+  { emotion: 'happy', label: '행복해요', color: colors.diary.happy, lottie: happyAnimation, image: happyMood, largeImage: largeHappy },
+  { emotion: 'good', label: '좋아요', color: colors.diary.good, lottie: goodAnimation, image: goodMood, largeImage: largeGood },
+  { emotion: 'love', label: '설레요', color: colors.diary.love, lottie: loveAnimation, image: loveMood, largeImage: largeLove },
+  { emotion: 'soso', label: '그냥 그래요', color: colors.diary.soso, lottie: sosoAnimation, image: sosoMood, largeImage: largeSoso },
+  { emotion: 'sick', label: '아파요', color: colors.diary.sick, lottie: sickAnimation, image: sickMood, largeImage: largeSick },
+  { emotion: 'sad', label: '슬퍼요', color: colors.diary.sad, lottie: sadAnimation, image: sadMood, largeImage: largeSad },
+  { emotion: 'angry', label: '화나요', color: colors.diary.angry, lottie: angryAnimation, image: angryMood, largeImage: largeAngry },
+  { emotion: 'anxious', label: '불안해요', color: colors.diary.anxiety, lottie: anxietyAnimation, image: anxiousMood, largeImage: largeAnxious },
+  { emotion: 'tired', label: '피곤해요', color: colors.diary.tired, lottie: tiredAnimation, image: tiredMood, largeImage: largeTired },
 ];
 
 interface EmotionPickerProps {
@@ -137,6 +149,10 @@ export const getEmotionLottie = (emotion: Emotion): object | undefined => {
 
 export const getEmotionImage = (emotion: Emotion): string | undefined => {
   return emotions.find((e) => e.emotion === emotion)?.image;
+};
+
+export const getEmotionLargeImage = (emotion: Emotion): string | undefined => {
+  return emotions.find((e) => e.emotion === emotion)?.largeImage;
 };
 
 export { emotions };

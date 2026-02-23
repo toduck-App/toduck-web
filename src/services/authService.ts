@@ -1,5 +1,5 @@
 import { apiClient } from './api';
-import { AuthTokens, LoginRequest, QRLoginRequest } from '../types';
+import { AuthTokens, LoginRequest, QRLoginRequest, WebSessionCreateResponse, WebSessionStatusResponse } from '../types';
 
 export const authService = {
   // Traditional login with ID and password
@@ -14,16 +14,28 @@ export const authService = {
     return response.data;
   },
 
-  // Generate QR code for login
+  // Generate QR code for login (legacy)
   async generateQRCode(): Promise<{ qrToken: string; expiresAt: string }> {
     const response = await apiClient.get('/auth/qr-code');
     return response.data;
   },
 
-  // Check QR code status (polling)
+  // Check QR code status (legacy polling)
   async checkQRStatus(qrToken: string): Promise<{ status: 'pending' | 'scanned' | 'confirmed'; tokens?: AuthTokens }> {
     const response = await apiClient.get(`/auth/qr-status/${qrToken}`);
     return response.data;
+  },
+
+  // Create web login session
+  async createWebSession(): Promise<WebSessionCreateResponse> {
+    const response = await apiClient.post('/auth/web/sessions');
+    return response.data.content;
+  },
+
+  // Check web session status (polling)
+  async checkWebSessionStatus(sessionToken: string): Promise<WebSessionStatusResponse> {
+    const response = await apiClient.get(`/auth/web/sessions/${sessionToken}`);
+    return response.data.content;
   },
 
   // Refresh access token

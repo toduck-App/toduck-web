@@ -27,12 +27,29 @@ export interface QRLoginRequest {
   qrToken: string;
 }
 
+// Web Session related types
+export interface WebSessionCreateResponse {
+  sessionToken: string;
+  qrImageBase64: string;
+  qrCodeUrl: string;
+  expiresInSeconds: number;
+}
+
+export type WebSessionStatus = 'PENDING' | 'APPROVED' | 'EXPIRED';
+
+export interface WebSessionStatusResponse {
+  status: WebSessionStatus;
+  accessToken?: string;
+  userId?: number;
+}
+
 // Diary related types
 export type Emotion = 'happy' | 'good' | 'love' | 'soso' | 'sick' | 'sad' | 'angry' | 'anxious' | 'tired';
 
 export interface DiaryKeyword {
   id: number;
   content: string;
+  category?: string; // RESULT, SITUATION, PLACE, PERSON, CUSTOM
 }
 
 export interface Diary {
@@ -53,6 +70,24 @@ export interface DiaryStats {
   currentMonthCount: number;
   previousMonthCount: number;
   streak: number;
+}
+
+// Diary Write Step types
+export type DiaryWriteStep = 'emotion' | 'keyword' | 'content' | 'complete';
+
+// User Keyword with category - API categories
+export type KeywordCategory = 'RESULT' | 'SITUATION' | 'PLACE' | 'PERSON' | 'CUSTOM';
+
+export interface UserKeyword {
+  id: number;
+  content: string;
+  category: KeywordCategory;
+}
+
+// Diary Streak Info
+export interface DiaryStreakInfo {
+  currentStreak: number;
+  weeklyStreak: boolean[]; // Array of 7 booleans for each day of the week
 }
 
 // Social related types
